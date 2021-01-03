@@ -1,17 +1,4 @@
--- ## 집계함수, GROUP BY, HAVING
-
--- COUNT(* 또는 컬럼명) 
--- 특정 컬럼에 NULL값이 들어가 있을때 NULL값을 제외하고 카운트
--- COUNT(DISTINCT 컬럼명) : 중복값 제외하고 카운트
-
--- AVG() VS SUM()/COUNT(*)
--- AVG() : NULL값을 제외하고 값이 존재하는 컬럼을 카운트해서 총합을 나눔
--- SUM()/COUNT(*) : NULL값 있는 애도 카운트해서(값을 0으로 취급해서) 나누어줌 
-
--- MIN(), MAX()
-
-SELECT COUNT(Price), AVG(Price) , SUM(Price), MIN(Price), MAX(Price)
-FROM Products
+-- ## GROUP BY, HAVING
 
 -- 공급자아이디별로 평균가격 출력 
 SELECT SupplierID, AVG(Price)
