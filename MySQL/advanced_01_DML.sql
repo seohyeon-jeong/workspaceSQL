@@ -25,7 +25,12 @@ SET 컬럼명 = CASE
             ELSE value_other_case
 (WHERE 조건식);  
 
-
+-- LeetCode) 627. Swap Salary
+UPDATE salary 
+SET sex = CASE
+            WHEN sex = 'f' THEN 'm'
+            WHEN sex = 'm' THEN 'f'
+          END
 
 
 
@@ -37,3 +42,13 @@ DELETE FROM salary;
 -- 2. 지정 행만 삭제
 DELETE FROM 테이블명 WHERE 조건식; 
 DELETE FROM salary WHERE id = 2;
+
+-- LeetCode) 196. Delete Duplicate Emails
+DELETE 
+FROM person 
+where id NOT IN (
+    -- email단위로 grouping해서 그 email을 갖는 최초의 id와 이메일을 출력
+    SELECT email, MIN(id)
+    FROM person
+    GROUP BY email
+)
