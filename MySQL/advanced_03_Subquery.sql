@@ -26,3 +26,22 @@ FROM crimes
 WHERE date IN (SELECT date FROM crimes ORDER BY date DESC LIMIT 5)
 -- 최근에 5일동안 발생했던 모.든. 레코드 조회 
 
+
+-- HackerRank) TOP Earners
+SELECT months * salary AS earnings, count(*)
+FROM employee
+WHERE months * salary = (SELECT MAX(months*salary) FROM employee)
+-- WHERE문에는 SELECT에서 쓴 Alias 사용 불가
+GROUP BY earnings
+
+SELECT salary * months AS earnings, count(*)
+FROM employee
+GROUP BY earnings
+ORDER BY earnings DESC 
+LIMIT 1 
+
+SELECT months * salary AS earnings, COUNT(*)
+FROM employee
+GROUP BY earnings
+-- GROUP BY 한 결과에 대한 조건 추가 :  
+HAVING earnings = (SELECT MAX(months*salary) FROM employee)
