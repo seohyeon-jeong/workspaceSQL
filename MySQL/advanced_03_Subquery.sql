@@ -1,7 +1,10 @@
 
--- FROM 절 Subquery
+-- SELECT 절 Subquery : 누적합을 다룰 때 주로 사용
+
+-- FROM 절 Subquery : 가상의 테이블을 하나 더 만드는 경우 
 SELECT daily_stats.week
-     , AVG(daily_stats.incidents_only)
+     , AVG(daily_stats.incidents_only) 
+     -- date가 없는 경우가 있으면 주의해야한다 나누는 값이 값이 있는 일자의 수가 되기 때문
 FROM (
       SELECT week
             , date
@@ -14,7 +17,8 @@ GROUP BY daily_stats.week
 -- WHERE 절 Subquery
 SELECT * 
 FROM crimes
-WHERE date = (SELECT MIN(date) FROM crimes)
+WHERE date = (SELECT MIN(date) FROM crimes) 
+      -- WHERE x = a : a에 넣어줄 값은 반드시 단일 값이어야한다. 
 -- 테이블에서 가지고 있는 최초의 일자의 레코드 조회
 
 SELECT *
