@@ -44,4 +44,4 @@ SELECT months * salary AS earnings, COUNT(*)
 FROM employee
 GROUP BY earnings
 -- GROUP BY 한 결과에 대한 조건 추가 :  
-HAVING earnings = (SELECT MAX(months*salary) FROM employee)
+HAVING earnings = (SELECT MAX(months*salary) FROM employee) 
