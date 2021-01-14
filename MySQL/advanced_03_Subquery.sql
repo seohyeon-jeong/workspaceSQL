@@ -45,3 +45,15 @@ FROM employee
 GROUP BY earnings
 -- GROUP BY 한 결과에 대한 조건 추가 :  
 HAVING earnings = (SELECT MAX(months*salary) FROM employee) 
+
+-- LeetCode) 184. Department Highest Salary
+SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary
+FROM employee AS e
+    INNER JOIN (
+        SELECT departmentId, MAX(salary) AS max_salary
+        FROM employee
+        GROUP BY departmentId        
+    ) AS dh ON e.departmentId = dh.departmentId
+            AND e.salary = dh.max_salary
+    INNER JOIN department AS d ON e.departmentId = d.Id
+-- ORDER BY d.name
