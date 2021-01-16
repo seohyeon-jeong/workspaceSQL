@@ -36,7 +36,6 @@ SELECT COUNT(Price), AVG(Price) , SUM(Price), MIN(Price), MAX(Price)
 FROM Products
 
 
-
 -- ## MySQL 시간 더하기 빼기
 
 -- DATE_ADD(기준날짜, INTERVAL 숫자 기준단위)
