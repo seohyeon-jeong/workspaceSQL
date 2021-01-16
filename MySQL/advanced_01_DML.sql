@@ -36,8 +36,6 @@ SET sex = CASE
             WHEN sex = 'm' THEN 'f'
           END
 
-
-
 -- 3. DELETE 
 -- 1. 테이블 전체에 데이터를 삭제
 DELETE FROM 테이블명; -- DELETE 뒤의 FROM은 생략가능
