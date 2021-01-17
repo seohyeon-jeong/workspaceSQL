@@ -60,42 +60,36 @@ FROM employee AS e
 
 
 -- HackerRank) Challenges
+-- SELECT hacker_id, name, Count(challenges created by each id)
+-- sort by count(challenges) DESC
+-- IF 같은 숫자의 문제 만든 학생들이 둘이상일 때 만든 문제 개수가 
+      --> max(challenges)라면 -> sort by id
+      --> max(challenges)보다 적은 수라면 --> exclude those students
 
-SELECT h.hacker_id, h.name, count(*) AS challenges_created
-FROM challenges AS c
-      INNER JOIN hackers AS h ON c.hacker_id = h.hacker_id
+SELECT h.hacker_id, h.name, count(*) as challenges_created
+FROM challenges as c -- the table we are gonna handle the data mainly
+    INNER JOIN hackers as h ON c.hacker_id = h.hacker_id
 GROUP BY h.hacker_id, h.name
--- MAX(challenges_created), example 50
+-- Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column -- 'run_4yogq2qfpob.h.name' which is not functionally dependent on columns in GROUP BY clause
+
+-- group by한 값에 대한 조건식 -> having
+-- 조건 1) IF 같은 숫자의 문제 만든 학생들이 둘이상일 때 만든 문제 개수 =  max(challenges)라면 -> sort by id
 HAVING challenges_created = (SELECT MAX(challenges_created)
-                             FROM (SELECT hacker_id
-                                        , COUNT(*) AS challenges_created
+                             FROM (SELECT hacker_id, COUNT(*) AS challenges_created
                                    FROM challenges
                                    GROUP BY hacker_id
-                              ) sub)
-/* If more than one student created the same number of challenges, then sort the result by hacker_id. 
-   If more than one student created the same number of challenges and the count is less than the maximum number of challenges created, 
-   then exclude those students from the result. */
-OR challenges_created IN (SELECT challenges_created -- count(*)
-                          FROM (SELECT hacker_id
-                                     , COUNT(*) AS challenges_created
-                                   FROM challenges
-                                   GROUP BY hacker_id
-                          ) sub
-                          GROUP BY challenges_created     
-                          HAVING COUNT(*) = 1)    
+                                  ) sub
+                             ) 
+-- 조건 2) IF 같은 숫자의 문제 만든 학생들이 둘이상일 때 만든 문제 개수 < max(challenges) -> exclude those students
+OR challenges_created IN (SELECT challenges_created
+                          FROM (SELECT hacker_id, COUNT(*) AS challenges_created
+                                FROM challenges
+                                GROUP BY hacker_id
+                                ) sub
+                          GROUP BY challenges_created
+                          HAVING COUNT(*) = 1 
+                        )
 ORDER BY challenges_created DESC, hacker_id ASC
-
-/*
-SELECT h.hacker_id, h.name, cc.challenges_created
-FROM hackers as h
-    INNER JOIN ( 
-        SELECT c.hacker_id AS hacker_id, count(*) AS challenges_created
-        FROM challenges as c
-        GROUP BY c.hacker_id
-    ) AS cc ON h.hacker_id = cc.hacker_id
-ORDER BY cc.challenges_created DESC, h.hacker_id ASC
-*/ 
-
 
 -- MS SQL Server 에서 가능한 쿼리를 저장해서 테이블처럼 활용하는 WITH문
 WITH counter AS (
