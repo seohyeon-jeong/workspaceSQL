@@ -3,7 +3,8 @@
 
 SELECT * 
 FROM Customers
--- WHERE countryName < 'b'
+-- WHERE countryName < 'B' -- 문자의 대소문자 구분한다 (대문자 - 소문자 순)
+    -- 알파벳 순서에 따라 문자 'B'이전의 데이터들만 검색 (즉 'A'로 시작하는 모든 데이터가 검색됨)
 
 -- WHERE country LIKE '%r%'
 -- LIKE 보다는 = 이 더 빠르니 정확한 경우에는 = 써주기 
