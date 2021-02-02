@@ -3,7 +3,7 @@
 -- 공급자아이디별로 평균가격 출력 
 SELECT SupplierID, AVG(Price)
 FROM Products
-GROUP BY SupplierID
+GROUP BY SupplierID -- 그룹화의 기준이 되는 컬럼은 SELECT문에 반드시 기재!
 
 SELECT SupplierID
 	, Categoryid
@@ -46,8 +46,6 @@ We define an employee's total earnings to be their monthly salaryXmonths worked,
 and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. 
 Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings.
 Then print these values as 2 space-separated integers.*/
-SELECT MAX(salary*months) ,count(employee_id)
-FROM Employee
 
 /*
 1. salary * month = earnings
@@ -61,3 +59,9 @@ GROUP BY earnings
 ORDER BY earnings DESC 
 LIMIT 1 
 
+
+SELECT months * salary AS earnings, count(*)
+FROM employee
+WHERE months * salary = (SELECT MAX(months*salary) FROM employee)
+-- WHERE문에는 SELECT에서 쓴 Alias 사용 불가
+GROUP BY earnings
