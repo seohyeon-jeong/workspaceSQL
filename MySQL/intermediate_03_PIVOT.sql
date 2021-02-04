@@ -16,7 +16,7 @@ categoryId1_avg categoryId2_avg categoryId3_avg
 SELECT
         AVG(
             CASE 
-			    WHEN categoryid = 1 THEN price
+			          WHEN categoryid = 1 THEN price
                 ELSE NULL 
             END
         ) AS category1_avg
@@ -24,13 +24,13 @@ SELECT
 
       , AVG(
             CASE 
-			    WHEN categoryid = 2 THEN price
+			          WHEN categoryid = 2 THEN price
                 ELSE NULL
             END
         ) AS category2_avg
       , AVG(
             CASE 
-			    WHEN categoryid = 3 THEN price
+			          WHEN categoryid = 3 THEN price
                 ELSE NULL
             END
         ) AS category3_avg      
