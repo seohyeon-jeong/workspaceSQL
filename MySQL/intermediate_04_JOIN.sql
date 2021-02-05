@@ -37,6 +37,11 @@ WHERE country.continent = 'Asia'
 
 
 -- HackerRank) Average Population of Each Continent
+/*
+Given the CITY and COUNTRY tables, 
+query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+*/
 SELECT country.continent
     , FLOOR(AVG(city.population))
 FROM city
@@ -48,8 +53,6 @@ SELECT country.continent, FLOOR(AVG(city.population))
 FROM country 
     INNER JOIN city ON country.code = city.countrycode
 GROUP BY country.continent
-
-
 
 -- 2. OUTER JOIN : INNER JOIN이 아닌 A, B 또는 A-B, B-A를 출력하는 방법
 -- LEFT (OUTER) JOIN
