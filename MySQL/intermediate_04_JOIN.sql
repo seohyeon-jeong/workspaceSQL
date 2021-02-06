@@ -54,6 +54,7 @@ FROM country
     INNER JOIN city ON country.code = city.countrycode
 GROUP BY country.continent
 
+
 -- 2. OUTER JOIN : INNER JOIN이 아닌 A, B 또는 A-B, B-A를 출력하는 방법
 -- LEFT (OUTER) JOIN
 -- RIGHT (OUTER) JOIN : 그냥 두 테이블 선언의 위치만 바꿔주면 됨
@@ -68,7 +69,6 @@ WHERE OrderID IS NULL -- 한번도 주문하지 않은 고객 정보만 가져�
 
 
 -- LeetCode ) 183. Customers Who Never Order
-
 SELECT * 
 FROM Customers
     LEFT JOIN Orders ON Customers.Id = Orders.customerId
