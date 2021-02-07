@@ -25,4 +25,27 @@ ORDER BY COUNT(s.hacker_id) DESC, s.hacker_id ASC
 -- 43954 40226 69855 40 / 69855 48984 3 / 3 40 40226 Anna 
 
 
+/* Ollivander's Inventory
+Buy a wand with minimum num of gold, each non evil wand of high power and age
+
+Hermione decides the best way to choose is by determining the minimum number of gold galleons needed to buy each non-evil wand of high power and age. Write a query to print the id, age, coins_needed, and power of the wands that Ron's interested in, 
+sorted in order of descending power. If more than one wand has same power, sort the result in order of descending age.
+
+SELECT id, age, coins_needed, power of wnads
+ORDER BY power DESC, age DESC
+
+Wands : id, code, coins_needed, power
+Wands_Property : code, age, is_evil
+
+*/
+
+SELECT w.id, p.age, w.coins_needed, w.power
+FROM wands as w
+    INNER JOIN wands_property as p ON w.code = p.code
+WHERE p.is_evil = 0 AND coins_needed = (SELECT MIN(coins_needed) 
+                                        FROM wands as w1 
+                                            INNER JOIN wands_property p1 ON w1.code = p1.code
+                                        WHERE w1.power = w.power AND p1.age = p.age
+                                       )
+ORDER BY w.power DESC, p.age DESC
 
