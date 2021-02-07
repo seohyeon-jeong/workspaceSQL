@@ -140,5 +140,4 @@ FROM Customers
 
 
 -- LeetCode) 180. Consecutive Number
-
 -- HackerRnak) The Report
