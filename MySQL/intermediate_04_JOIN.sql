@@ -138,6 +138,6 @@ SELECT *
 FROM Customers 
     RIGHT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
 
-
 -- LeetCode) 180. Consecutive Number
--- HackerRnak) The Report
+
+-- HackerRank) The Report
