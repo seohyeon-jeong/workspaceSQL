@@ -10,8 +10,6 @@ FROM Customers
 -- LIKE 보다는 = 이 더 빠르니 정확한 경우에는 = 써주기 
 -- WHERE country LIKE 'B______' -- 특정 문자의 개수를 _로 표기 
 
--- WHERE 
-
 -- WHERE discount LIKE '50\%'
 -- WHERE discount LIKE '__\%' -- 2자리 퍼센트 찾기 
 -- % 자체를 예약어가 아닌 문자로 사용하고 싶은 경우(=escape)에는 \%로 역슬레시 추가
@@ -53,7 +51,11 @@ AND city NOT LIKE '%i'
 AND city NOT LIKE '%o'
 AND city NOT LIKE '%u'
 
-select distinct city from station where city regexp '^[^aeiou].*[^aeiou]$'
+SELECT DISTINCT city 
+FROM station 
+WHERE city regexp '^[^aeiou].*[^aeiou]$'
+
+-- WHERE city regexp '^[   ].*[   ]$'
 
 /*
 HackerRank) Weather Observation Station 6
