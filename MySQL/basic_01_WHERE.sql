@@ -16,7 +16,7 @@ FROM Customers
 
 -- WHERE country NOT LIKE 'an%' -- an으로 시작하지 않는~ 
 
--- WHERE country =  'Germany' OR country = 'France'
+-- WHERE country = 'Germany' OR country = 'France'
 -- WHERE country IN ('Germany', 'France')
 
 -- WHERE customerID BETWEEN 3 AND 5
