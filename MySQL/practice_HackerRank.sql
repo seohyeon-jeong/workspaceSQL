@@ -48,6 +48,3 @@ WHERE p.is_evil = 0 AND coins_needed = (SELECT MIN(coins_needed)
                                         WHERE w1.power = w.power AND p1.age = p.age
                                        )
 ORDER BY w.power DESC, p.age DESC
-
-
-
